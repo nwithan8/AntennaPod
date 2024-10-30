@@ -90,6 +90,7 @@
     <string name="drawer_feed_order_alphabetical">Sort alphabetically</string>
     <string name="drawer_feed_order_last_update">Sort by publication date</string>
     <string name="drawer_feed_order_most_played">Sort by number of played episodes</string>
+    <string name="drawer_feed_order_custom">Sort by custom order</string>
     <string name="drawer_feed_counter_inbox">Number of episodes in the inbox</string>
     <string name="drawer_feed_counter_unplayed">Number of unplayed episodes</string>
     <string name="drawer_feed_counter_downloaded">Number of downloaded episodes</string>
@@ -841,6 +842,7 @@
     <!-- Subscriptions fragment -->
     <string name="subscription_num_columns">Number of columns</string>
     <string name="subscription_display_list">List</string>
+    <string name="subscriptions_reorder">Reorder</string>
 
     <!-- Notification channels -->
     <string name="notification_group_errors">Errors</string>

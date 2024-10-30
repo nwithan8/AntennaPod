@@ -191,6 +191,7 @@ public class SubscriptionFragment extends Fragment
         toolbar.getMenu().findItem(R.id.pref_show_subscription_title).setVisible(columns > 1);
         toolbar.getMenu().findItem(R.id.pref_show_subscription_title)
                 .setChecked(UserPreferences.shouldShowSubscriptionTitle());
+        toolbar.getMenu().findItem(R.id.subscriptions_reorder).setVisible(UserPreferences.isFeedOrderCustom());
     }
 
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
@@ -209,6 +210,9 @@ public class SubscriptionFragment extends Fragment
             return true;
         } else if (itemId == R.id.subscriptions_sort) {
             FeedSortDialog.showDialog(requireContext());
+            return true;
+        } else if (itemId == R.id.subscriptions_reorder) {
+            new ReorderSubscriptionDialog().show(getChildFragmentManager(), "reorder"); // TODO: Enter reorder mode
             return true;
         } else if (itemId == R.id.subscription_display_list) {
             setColumnNumber(1);

@@ -52,7 +52,7 @@ public class PodDBAdapter {
 
     private static final String TAG = "PodDBAdapter";
     public static final String DATABASE_NAME = "Antennapod.db";
-    public static final int VERSION = 3050000;
+    public static final int VERSION = 3060000;
 
     /**
      * Maximum number of arguments for IN-operator.
@@ -122,6 +122,7 @@ public class PodDBAdapter {
     public static final String KEY_NEW_EPISODES_ACTION = "new_episodes_action";
     public static final String KEY_PODCASTINDEX_CHAPTER_URL = "podcastindex_chapter_url";
     public static final String KEY_STATE = "state";
+    public static final String KEY_FEED_CUSTOM_ORDER_RANK = "feed_custom_order_rank";
     public static final String KEY_PODCASTINDEX_TRANSCRIPT_URL = "podcastindex_transcript_url";
     public static final String KEY_PODCASTINDEX_TRANSCRIPT_TYPE = "podcastindex_transcript_type";
 
@@ -794,6 +795,12 @@ public class PodDBAdapter {
     public void setFeedState(long feedId, int state) {
         ContentValues values = new ContentValues();
         values.put(KEY_STATE, state);
+        db.update(TABLE_NAME_FEEDS, values, KEY_ID + "=?", new String[]{String.valueOf(feedId)});
+    }
+
+    public void setFeedCustomOrderRank(long feedId, int customOrderRank) {
+        ContentValues values = new ContentValues();
+        values.put(KEY_FEED_CUSTOM_ORDER_RANK, customOrderRank);
         db.update(TABLE_NAME_FEEDS, values, KEY_ID + "=?", new String[]{String.valueOf(feedId)});
     }
 

@@ -77,6 +77,14 @@ public abstract class FeedDatabaseWriter {
         return null;
     }
 
+    private static void saveFeedCustomOrderRanks(List<Feed> feeds) {
+        for (int i = 0; i < feeds.size(); i++) {
+            Feed feed = feeds.get(i);
+            feed.setFeedCustomOrderRank(i);
+            feed.setSortOrder();
+        }
+    }
+
     /**
      * Adds new Feeds to the database or updates the old versions if they already exists. If another Feed with the same
      * identifying value already exists, this method will add new FeedItems from the new Feed to the existing Feed.

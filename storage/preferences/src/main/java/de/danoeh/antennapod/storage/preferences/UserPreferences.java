@@ -271,6 +271,10 @@ public abstract class UserPreferences {
         prefs.edit().putString(PREF_DRAWER_FEED_ORDER, "" + feedOrder.id).apply();
     }
 
+    public static boolean isFeedOrderCustom() {
+        return getFeedOrder() == FeedOrder.CUSTOM;
+    }
+
     public static FeedCounter getFeedCounterSetting() {
         String value = prefs.getString(PREF_DRAWER_FEED_COUNTER, "" + FeedCounter.SHOW_NEW.id);
         return FeedCounter.fromOrdinal(Integer.parseInt(value));

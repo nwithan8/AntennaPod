@@ -946,6 +946,16 @@ public class DBWriter {
         });
     }
 
+    public static Future<?> setFeedCustomOrderRank(Feed feed, int rank) {
+        return runOnDbThread(() -> {
+            PodDBAdapter adapter = PodDBAdapter.getInstance();
+            adapter.open();
+            adapter.setFeedCustomOrderRank(feed.getId(), rank);
+            adapter.close();
+            EventBus.getDefault().post(new FeedListUpdateEvent(feed));
+        });
+    }
+
     /**
      * Sort the FeedItems in the queue with the given the named sort order.
      *

@@ -48,7 +48,7 @@ public class RenameFeedDialog {
                 .setPositiveButton(android.R.string.ok, (d, input) -> {
                     String newTitle = binding.urlEditText.getText().toString();
                     if (feed != null) {
-                        feed.setCustomTitle(newTitle);
+                        feed.setCustomTitle(newTitle);  // TODO: Ref for setting values when changing custom order for feeds
                         DBWriter.setFeedCustomTitle(feed);
                     } else {
                         renameTag(newTitle);

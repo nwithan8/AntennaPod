@@ -719,6 +719,20 @@ public final class DBReader {
                     }
                 };
                 break;
+            case CUSTOM:
+                comparator = (lhs, rhs) -> {
+                    int orderLhs = lhs.getFeedCustomOrderRank();
+                    int orderRhs = rhs.getFeedCustomOrderRank();
+                    if (orderLhs < orderRhs) {
+                        return -1;
+                    } else if (orderLhs == orderRhs) {
+                        // This should never happen, but if it does, we sort by title
+                        return lhs.getTitle().compareToIgnoreCase(rhs.getTitle());
+                    } else {
+                        return 1;
+                    }
+                };
+            case MOST_RECENT_EPISODE:
             default:
                 final Map<Long, Long> recentPubDates = adapter.getMostRecentItemDates();
                 comparator = (lhs, rhs) -> {

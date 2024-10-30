@@ -107,6 +107,8 @@ public class Feed {
     private SortOrder sortOrder;
     private int state;
 
+    private int feedCustomOrderRank;
+
     /**
      * This constructor is used for restoring a feed from the database.
      */
@@ -114,7 +116,8 @@ public class Feed {
                 String description, String paymentLinks, String author, String language,
                 String type, String feedIdentifier, String imageUrl, String fileUrl,
                 String downloadUrl, long lastRefreshAttempt, boolean paged, String nextPageLink,
-                String filter, @Nullable SortOrder sortOrder, boolean lastUpdateFailed, int state) {
+                String filter, @Nullable SortOrder sortOrder, boolean lastUpdateFailed, int state,
+                int feedCustomOrderRank) {
         this.localFileUrl = fileUrl;
         this.downloadUrl = downloadUrl;
         this.lastRefreshAttempt = lastRefreshAttempt;
@@ -141,6 +144,7 @@ public class Feed {
         setSortOrder(sortOrder);
         this.lastUpdateFailed = lastUpdateFailed;
         this.state = state;
+        this.feedCustomOrderRank = feedCustomOrderRank;
     }
 
     /**
@@ -150,7 +154,7 @@ public class Feed {
                 String author, String language, String type, String feedIdentifier, String imageUrl, String fileUrl,
                 String downloadUrl, long lastRefreshAttempt) {
         this(id, lastModified, title, null, link, description, paymentLink, author, language, type, feedIdentifier,
-                imageUrl, fileUrl, downloadUrl, lastRefreshAttempt, false, null, null, null, false, STATE_SUBSCRIBED);
+                imageUrl, fileUrl, downloadUrl, lastRefreshAttempt, false, null, null, null, false, STATE_SUBSCRIBED, 0);
     }
 
     /**
@@ -481,6 +485,14 @@ public class Feed {
 
     public void setState(int state) {
         this.state = state;
+    }
+
+    public int getFeedCustomOrderRank() {
+        return feedCustomOrderRank;
+    }
+
+    public void setFeedCustomOrderRank(int feedCustomOrderRank) {
+        this.feedCustomOrderRank = feedCustomOrderRank;
     }
 
     public boolean hasEpisodeInApp() {
